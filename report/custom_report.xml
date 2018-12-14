@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_project_custom_report" model="ir.ui.view">
+            <field name="name">project.custom.report.graph</field>
+            <field name="model">custom.report</field>
+            <field name="arch" type="xml">
+                <graph string="Custom Report" type="pivot">
+                    <field name="project_id" type="row"/>
+                    <field name="user_id" type="col"/>
+                    <field name="target" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+         <record id="view_custom_report_filter" model="ir.ui.view">
+            <field name="name">custom.report.select</field>
+            <field name="model">custom.report</field>
+            <field name="arch" type="xml">
+                <search string="Search Project">
+                    <filter string="Open" name="Current" domain="[('state', '=','open')]"/>
+                </search>
+            </field>
+         </record>
+
+        <record id="action_custom_project_report"
+                model="ir.actions.act_window">
+            <field name="name">Custom Project Report</field>
+            <field name="res_model">custom.report</field>
+            <field name="view_mode">graph</field>
+             <field name="search_view_id" ref="view_custom_report_filter"/>
+            <field name="context">{'search_default_Current': 1}</field>
+        </record>
+
+        <!--menu for product report-->
+        <menuitem id="custom_project_report"
+                  name="Custom Project Report"
+                  parent="base.menu_project_report"
+                  sequence="50"
+                  action="action_custom_project_report"/>
+    </data>
+</openerp>

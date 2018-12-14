@@ -11,6 +11,8 @@
     ],
     "data": [
         # "view/ir_actions_report_xml.xml",
+        "report/custom_report.xml",
+        "data/project_data.xml",
     ],
     "auto_install": False,
     "installable": True,
